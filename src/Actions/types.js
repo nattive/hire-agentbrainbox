@@ -1,0 +1,43 @@
+/**
+ * Authentication
+ */
+
+//Login
+
+export const LOGIN = "LOGIN"
+export const USER = "USER"
+export const ERROR_LOGGING = "ERROR_LOGGING"
+
+//Register
+
+export const REDIRECT = "REDIRECT"
+
+export const REGISTER_USER = "REGISTER_USER"
+export const REGISTRATION_ERROR = "REGISTRATION_ERROR"
+
+/**
+ * Creating Seller
+ */
+export const CREATE_AGENCY = "CREATE_AGENCY"
+export const AGENCY = "AGENCY"
+export const ERROR_CREATING_AGENCY = "ERROR_CREATING_AGENCY"
+
+
+/***
+ *  WALLET 
+ */
+export const GET_WALLET_ACCESS = "GET_WALLET_ACCESS"
+export const WALLET_ACCESS_TOKEN = "WALLET_ACCESS_TOKEN"
+export const WALLET_INFO = "WALLET_INFO"
+export const WALLET_HISTORY = "WALLET_HISTORY"
+export const GET_WALLET_HISTORY = "GET_WALLET_HISTORY_ERROR"
+export const GET_WALLET_HISTORY_ERROR = "GET_WALLET_HISTORY"
+export const ERROR_GETTING_WALLET_ACCESS = "ERROR_GETTING_WALLET_ACCESS"
+
+export const FUND_ACCOUNT = "FUND_ACCOUNT"
+export const ACCOUNT_FUNDED = "ACCOUNT_FUNDED"
+export const FUND_ERROR = "FUND_ERROR"
+
+export const WITHDRAW = "WITHDRAW"
+export const WITHDRAW_SUCCESS = "WITHDRAW_SUCCESS"
+export const WITHDRAW_ERROR = "WITHDRAW_ERROR"
