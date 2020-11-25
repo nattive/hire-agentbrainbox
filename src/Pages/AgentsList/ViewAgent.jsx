@@ -1,8 +1,41 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import img from "../../Assets/img/testmonial/testimonial-founder.png";
 import headerImage from "../../Assets/img/hero/about.jpg";
-const ViewAgent = () => {
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { getAgent } from "../../Actions/agentAction";
+const ViewAgent = (props) => {
+  const [history, setHistory] = useState([]);
+  const [education, setEducation] = useState([]);
+  useEffect(() => {
+    let historyArray = [];
+    let arrayHistory = [];
+    arrayHistory = props.agent.experience
+      ? props.agent.experience.split("-")
+      : [];
+    arrayHistory.map((h) => {
+      if (h.length > 3) {
+        historyArray.push(h);
+      }
+      setHistory(historyArray);
+    });
+  }, [props.agent]);
+
+  useEffect(() => {
+    let educationArray = [];
+    let arrayEducation = [];
+    arrayEducation = props.agent.education && props.agent.education.split("-");
+    arrayEducation.map((h) => {
+      if (h.length > 3) {
+        educationArray.push(h);
+      }
+      setEducation(educationArray);
+    });
+  }, [props.agent]);
+  const { id } = useParams();
+  useEffect(() => {
+    props.getAgent(id);
+  }, []);
   return (
     <>
       <div
@@ -13,8 +46,10 @@ const ViewAgent = () => {
           <div class="row">
             <div class="col-xl-12">
               <div class="hero-cap text-center text-light">
-                <h2 style={{ color: "#fff" }}>Ademo;a's Profile</h2>
-                <i className="fas fa-map-marker-alt"></i>Athens, Greece
+                <h2 style={{ color: "#fff" }}>{props.agent.name}'s Profile</h2>
+                <i className="fas fa-map-marker-alt"></i>
+                {props.agent.state_of_resident},{" "}
+                {props.agent.country_of_resident}
               </div>
             </div>
           </div>
@@ -30,31 +65,16 @@ const ViewAgent = () => {
                     <div className="small-section-tittle">
                       <h4>About Me</h4>
                     </div>
-                    <p>
-                      It is a long established fact that a reader will beff
-                      distracted by vbthe creadable content of a page when
-                      looking at its layout. The pointf of using Lorem Ipsum is
-                      that it has ahf mcore or-lgess normal distribution of
-                      letters, as opposed to using, Content here content here
-                      making it look like readable.
-                    </p>
+                    <p>{props.agent.About}</p>
                   </div>
                   <div className="post-details2  mb-50">
                     <div className="small-section-tittle">
-                      <h4>Job History</h4>
+                      <h4>Employment History</h4>
                     </div>
                     <ul>
-                      <li>System Software Development</li>
-                      <li>
-                        Mobile Applicationin iOS/Android/Tizen or other platform
-                      </li>
-                      <li>
-                        Research and code , libraries, APIs and frameworks
-                      </li>
-                      <li>
-                        Strong knowledge on software development life cycle
-                      </li>
-                      <li>Strong problem solving and debugging skills</li>
+                      {history.map((h) => (
+                        <li>{h}</li>
+                      ))}
                     </ul>
                   </div>
                   <div className="post-details2  mb-50">
@@ -62,32 +82,42 @@ const ViewAgent = () => {
                       <h4>Education + Experience</h4>
                     </div>
                     <ul>
-                      <li>3 or more years of professional design experience</li>
-                      <li>Direct response email experience</li>
-                      <li>Ecommerce website design experience</li>
-                      <li>Familiarity with mobile and web apps preferred</li>
-                      <li>Experience using Invision a plus</li>
+                      {education.map((h) => (
+                        <li>{h}</li>
+                      ))}
                     </ul>
+                  </div>
+                  <div className="post-details2  mb-50">
+                    <div className="small-section-tittle">
+                      <h4>Abb Job Experience</h4>
+                    </div>
+                    <p>
+                      {props.agent.adb_employmet_history || "No Previous Job"}
+                    </p>
                   </div>
                 </div>
               </div>
               <div className="col-xl-4 col-lg-4">
                 <div className="post-details3  mb-50">
                   <div className="img-responsive p-4">
-                    <img src={img} alt="" />
+                    <img src={props.agent.user_image} alt="" />
                   </div>
                   <div className="small-section-tittle mb-4">
                     <h4>Bio Data</h4>
                   </div>
                   <ul>
                     <li>
-                      Date of Birth: <span>3th of Match 1995</span>
+                      Date of Birth:{" "}
+                      <span>{`${props.agent.dob}, (${props.agent.age}years)`}</span>
                     </li>
                     <li>
-                      Nationality <span>Male</span>
+                      Gender: <span>{props.agent.gender}</span>
                     </li>
                     <li>
-                      State <span>Male</span>
+                      Nationality <span>{props.agent.country_of_origin}</span>
+                    </li>
+                    <li>
+                      State Of Origin <span>{props.agent.state_of_origin}</span>
                     </li>
                     <li>
                       Hr: <span>Fem HR company</span>
@@ -106,7 +136,7 @@ const ViewAgent = () => {
                   <div className="small-section-tittle">
                     <h4>Agency Information</h4>
                   </div>
-                  <hr className="my-4"/>
+                  <hr className="my-4" />
                   <span>Colorlib</span>
                   <p>
                     It is a long established fact that a reader will be
@@ -134,8 +164,12 @@ const ViewAgent = () => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  agent: state.agent.agent,
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  getAgent,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewAgent);

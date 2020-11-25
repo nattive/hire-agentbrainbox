@@ -8,7 +8,7 @@ const list = [
   "Transaction made out of ABB is at users risk",
   "Drafts will now auto-save while writing",
 ];
-const TopAgents = () => {
+const TopAgents = (props) => {
   return (
     <>
       <section className="featured-job-area  feature-padding">
@@ -23,15 +23,9 @@ const TopAgents = () => {
 
         <div className="mx-5">
           <div className="container justify-content-around row">
-            <AgentCard />
-            <AgentCard />
-            <AgentCard />
-            <AgentCard />
-            <AgentCard />
-            <AgentCard />
-            <AgentCard />
-            <AgentCard />
-            <AgentCard />
+            {props.agents.length > 0
+              ? props.agents.map((agent) => <AgentCard {...agent} />)
+              : "no agent"}
           </div>
         </div>
       </section>
@@ -39,7 +33,11 @@ const TopAgents = () => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  gettingAgents: state.agent.gettingAgents,
+  agents: state.agent.agents,
+  agentError: state.agent.agentError,
+});
 
 const mapDispatchToProps = {};
 

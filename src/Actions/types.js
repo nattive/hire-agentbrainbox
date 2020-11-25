@@ -41,3 +41,12 @@ export const FUND_ERROR = "FUND_ERROR"
 export const WITHDRAW = "WITHDRAW"
 export const WITHDRAW_SUCCESS = "WITHDRAW_SUCCESS"
 export const WITHDRAW_ERROR = "WITHDRAW_ERROR"
+
+
+export const GET_AGENTS = "GET_AGENTS"
+export const AGENTS = "AGENTS"
+export const GET_AGENTS_ERR = "GET_AGENTS_ERR"
+
+export const GET_AGENT = "GET_AGENT"
+export const AGENT = "AGENT"
+export const GET_AGENT_ERR = "GET_AGENT_ERR"

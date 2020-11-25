@@ -23,6 +23,10 @@ export const login = (email, password) => dispatch => {
                 type: USER,
                 payload: response.data.data.user
             })
+            dispatch({
+                type: AGENCY,
+                payload: response.data.user.agency
+            })
             dispatch(handleRedirect(response.data.data.user))
         })
         .catch(err => {
@@ -73,7 +77,7 @@ export const me = () => dispatch => {
             })
             dispatch({
                 type: AGENCY,
-                payload: response.data.merchant
+                payload: response.data.user.agency
             })
         })
         .catch(err => {

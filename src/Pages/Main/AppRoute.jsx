@@ -13,12 +13,16 @@ import Home from "./Home";
 import AgentsList from "../AgentsList";
 import Auth from "../Auth";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
+import { getAgents } from "../../Actions/agentAction";
 const AppRoute = (props) => {
-  const history = useHistory()
+  const history = useHistory();
   useEffect(() => {
-  props.link && history.push(props.link);
-  }, [props.link])
+    props.link && history.push(props.link);
+  }, [props.link]);
+  useEffect(() => {
+    props.getAgents();
+  }, []);
+
   return (
     <Switch>
       <div>
@@ -37,6 +41,6 @@ const mapStateToProps = (state) => ({
   link: state.general.link,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getAgents };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppRoute);
