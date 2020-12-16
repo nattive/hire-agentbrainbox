@@ -11,18 +11,17 @@ const list = [
 const TopAgents = (props) => {
   return (
     <>
-      <section className="featured-job-area  feature-padding">
-        <div class="row mb-105">
-          <div class="col-lg-12">
-            <div class="section-tittle text-center">
-              <span>Browse</span>
-              <h2>Top Agents</h2>
-            </div>
+      <div class="row mb-105">
+        <div class="col-lg-12">
+          <div class="section-tittle text-center">
+            <span>Browse</span>
+            <h2>Top Agents</h2>
           </div>
         </div>
-
+      </div>
+      <section className="container featured-job-area feature-padding">
         <div className="mx-5">
-          <div className="container justify-content-around row">
+          <div className=" justify-content-around row">
             {props.agents.length > 0
               ? props.agents.map((agent) => <AgentCard {...agent} />)
               : "no agent"}

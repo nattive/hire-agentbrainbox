@@ -9,10 +9,10 @@ export default function Home() {
     return (
         <div>
             <BannerSection />
-            <TopAgents />
-            <BannedAgents />
             <StepsSection />
+            <TopAgents />
             <ActionSection />
+            <BannedAgents />
         </div>
     )
 }

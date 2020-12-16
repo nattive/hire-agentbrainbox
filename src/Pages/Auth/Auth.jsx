@@ -4,6 +4,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import CreateAgency from "./CreateAgency";
+import AuthHome from "./AuthHome";
 const Auth = () => {
   const { path } = useRouteMatch();
   let location = useLocation();
@@ -12,6 +13,11 @@ const Auth = () => {
       <TransitionGroup>
         <CSSTransition key={location.key} classNames="fade" timeout={3000}>
           <Switch location={location}>
+            <Route
+              exact
+              path={`${path}`}
+              component={(props) => <AuthHome {...props} />}
+            />
             <Route
               path={`${path}/login`}
               component={(props) => <SignIn {...props} />}

@@ -1,12 +1,28 @@
 import React, { Component, useEffect, useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import img from "../../Assets/img/testmonial/testimonial-founder.png";
 import headerImage from "../../Assets/img/hero/about.jpg";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getAgent } from "../../Actions/agentAction";
+import { Link } from "react-router-dom";
+import { sendAgentEnq } from "../../Actions/agentAction";
 const ViewAgent = (props) => {
   const [history, setHistory] = useState([]);
+  const [error, setError] = useState();
+  const historyNav = useHistory()
   const [education, setEducation] = useState([]);
+  const [employmetHistory, setEmploymetHistory] = useState([]);
+  const dispatch = useDispatch();
+  const handleSendEnq = (e) => {
+    e.preventDefault();
+    if (props.user.id) {
+      setError(null);
+      props.sendAgentEnq(props.agent.id);
+      // historyNav.push("/message");
+    } else {
+      setError("You need to login/Register to contact an agency");
+    }
+  };
   useEffect(() => {
     let historyArray = [];
     let arrayHistory = [];
@@ -24,13 +40,19 @@ const ViewAgent = (props) => {
   useEffect(() => {
     let educationArray = [];
     let arrayEducation = [];
-    arrayEducation = props.agent.education && props.agent.education.split("-");
+    arrayEducation = props.agent.education
+      ? props.agent.education.split("-")
+      : [];
     arrayEducation.map((h) => {
       if (h.length > 3) {
         educationArray.push(h);
       }
       setEducation(educationArray);
     });
+    props.agent.adb_employmet_history &&
+      setEmploymetHistory(
+        JSON.parse(props.agent.adb_employmet_history).filter((e) => e !== null)
+      );
   }, [props.agent]);
   const { id } = useParams();
   useEffect(() => {
@@ -47,9 +69,11 @@ const ViewAgent = (props) => {
             <div class="col-xl-12">
               <div class="hero-cap text-center text-light">
                 <h2 style={{ color: "#fff" }}>{props.agent.name}'s Profile</h2>
-                <i className="fas fa-map-marker-alt"></i>
-                {props.agent.state_of_resident},{" "}
-                {props.agent.country_of_resident}
+                <i className="fas fa-map-marker-alt"></i>{" "}
+                <span className="text-capitalize">
+                  {props.agent.state_of_resident},{" "}
+                  {props.agent.country_of_resident}
+                </span>
               </div>
             </div>
           </div>
@@ -78,7 +102,7 @@ const ViewAgent = (props) => {
                     </ul>
                   </div>
                   <div className="post-details2  mb-50">
-                    <div className="small-section-tittle">
+                    <div className="small-section-tittle mb-2">
                       <h4>Education + Experience</h4>
                     </div>
                     <ul>
@@ -88,12 +112,27 @@ const ViewAgent = (props) => {
                     </ul>
                   </div>
                   <div className="post-details2  mb-50">
-                    <div className="small-section-tittle">
+                    <div className="small-section-tittle mb-2">
                       <h4>Abb Job Experience</h4>
                     </div>
-                    <p>
-                      {props.agent.adb_employmet_history || "No Previous Job"}
-                    </p>
+                    <ul>
+                      {employmetHistory.map((employ) => (
+                        <li>
+                          <h6>{employ.employerName}</h6>
+                          From:{" "}
+                          <span style={{ color: "orange" }}>
+                            {employ.startDate}
+                          </span>{" "}
+                          {employ.endDate ? (
+                            <span style={{ color: "orange" }}>
+                              {employ.endDate}
+                            </span>
+                          ) : (
+                            "till Date"
+                          )}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -127,9 +166,14 @@ const ViewAgent = (props) => {
                     </li>
                   </ul>
                   <div className="apply-btn2">
-                    <a href="#" className="btn">
-                      Contact Agency
+                    <a
+                      href="#"
+                      onClick={handleSendEnq}
+                      className="btn"
+                    >
+                     Send an enquiry
                     </a>
+                    {error && <p className="my-4 alert alert-danger">{error}</p>}
                   </div>
                 </div>
                 <div className="post-details4  mb-50">
@@ -137,21 +181,42 @@ const ViewAgent = (props) => {
                     <h4>Agency Information</h4>
                   </div>
                   <hr className="my-4" />
-                  <span>Colorlib</span>
-                  <p>
-                    It is a long established fact that a reader will be
-                    distracted by the readable content of a page when looking at
-                    its layout.
-                  </p>
+                  <span>
+                    {props.agent.agency && props.agent.agency.agency_name}
+                  </span>
+                  <p>{props.agent.agency && props.agent.agency.agency_about}</p>
                   <ul>
                     <li>
-                      Name: <span>Colorlib </span>
+                      Email:{" "}
+                      <span>
+                        {" "}
+                        {props.agent.agency &&
+                          props.agent.agency.agency_email}{" "}
+                      </span>
                     </li>
                     <li>
-                      Web : <span> colorlib.com</span>
+                      Website:
+                      <span>
+                        {" "}
+                        {props.agent.agency &&
+                          props.agent.agency.agency_website}
+                      </span>
                     </li>
                     <li>
-                      Email: <span>carrier.colorlib@gmail.com</span>
+                      Office Address
+                      <span>
+                        {props.agent.agency &&
+                          props.agent.agency.agency_address}{" "}
+                      </span>
+                    </li>
+                    <li>
+                      Founded: :{" "}
+                      <span>
+                        {" "}
+                        {(props.agent.agency &&
+                          props.agent.agency.agency_found_year) ||
+                          ""}{" "}
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -166,10 +231,12 @@ const ViewAgent = (props) => {
 
 const mapStateToProps = (state) => ({
   agent: state.agent.agent,
+  user: state.auth.user
 });
 
 const mapDispatchToProps = {
   getAgent,
+  sendAgentEnq,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewAgent);

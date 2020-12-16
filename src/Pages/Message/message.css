@@ -1,0 +1,95 @@
+.message-menu {
+    list-style-type: none;
+    padding: 3rem;
+}
+
+.message-menu .active {
+    margin: 0 0 0 3em;
+    border-left: 6px solid rgb(54, 133, 54);
+    background-color: rgba(54, 133, 54, 0.089);
+    ;
+}
+
+.message-menu {
+    padding: 1rem;
+}
+
+.read-reply-header {
+    padding: .8em;
+    border-bottom: 1px solid rgba(54, 133, 54, 0.246);
+    cursor: pointer;
+}
+
+.read-message-header {
+    padding: 1.2em;
+    border-bottom: 1px solid rgba(54, 133, 54, 0.246);
+}
+
+.reply-container {
+    height: 28rem;
+}
+
+.read-message-body {
+    padding: 2em 0;
+}
+
+.reply-container textarea,
+.reply-container input {
+    margin: 10px 0 !important;
+    width: 100%;
+    border: none;
+    padding: 10px;
+}
+
+.rs-btn {
+    border-radius: 0px !important;
+    padding: 1em 2em !important;
+    margin: 10px 0 !important;
+}
+
+.read-reply-header .sender-data small,
+.read-message-header .sender-data small {
+    color: rgb(45, 80, 45);
+    font-size: 10px;
+}
+
+.read-reply-header.sender-data p,
+.read-message-header .sender-data p {
+    line-height: 12px;
+}
+
+.read-reply-header .sender-data,
+.read-message-header .sender-data {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.read-reply-header .fa,
+.read-message-header .fa {
+    color: rgba(101, 182, 101, 0.767);
+    font-size: 13px;
+}
+
+.message-container,
+.message-reply-container {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.message-menu>li {
+    margin: 5px;
+    padding: 10px;
+}
+
+.message-menu>li>a {
+    text-decoration: none;
+    color: rgb(56, 55, 55);
+    padding: 10px;
+    width: 100%;
+}
+
+.message-menu>li>a:hover {
+    background-color: rgba(54, 133, 54, 0.171);
+}

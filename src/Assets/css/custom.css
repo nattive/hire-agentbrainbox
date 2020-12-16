@@ -15,6 +15,67 @@
     align-items: center;
 }
 
+.featured-job-area {
+    background-color: #fff !important;
+    margin: 1em;
+}
+
+.rcw-conversation-container>.rcw-header .rcw-title {
+    padding: 0 10px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.register-list {
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+}
+
+.register-list li span {
+    font-size: 5em;
+    margin: 10px;
+}
+
+.registration-page {
+    height: 500px;
+}
+
+.register-list li a {
+    text-decoration: none;
+}
+
+.register-list li:hover {
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075)!important;
+    margin: 0 .5px 0 0;
+    transition: .7s all;
+}
+
+.register-list li {
+    background: rgb(236, 234, 234);
+    align-items: center;
+    align-content: center;
+    padding: 10px;
+    width: 200px;
+    margin: 2em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.rcw-messages-container .rcw-client .rcw-message-text p {
+    color: #fff !important;
+}
+
+.rcw-messages-container .rcw-client .rcw-message-text {
+    background-color: #e35f19;
+    color: #fff !important;
+}
+
+.rcw-conversation-container>.rcw-header {
+    background-color: #e35f19;
+    height: 95px;
+}
+
 @media only screen and (max-width: 576px) {
     .single-job-items img {
         width: 75px;
@@ -125,9 +186,27 @@
     left: 100px;
 }
 
+.head-menu {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.head-menu small {
+    font-size: 10px;
+    margin: 5px 0;
+}
+
 .agent-card {
     height: 450px;
 }
+
+
+/* 
+a[title]:hover:after {
+    background-color: red !important;
+} */
 
 .card-profile:hover {
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15)!important;

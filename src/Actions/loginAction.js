@@ -9,6 +9,7 @@ import {
 import API from "../Constants/API";
 import { token } from "../Constants/constant";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import store from "../Constants/store";
 
 
 
@@ -25,12 +26,12 @@ export const login = (email, password) => dispatch => {
             })
             dispatch({
                 type: AGENCY,
-                payload: response.data.user.agency
+                payload: response.data.data.user.agency
             })
-            dispatch(handleRedirect(response.data.data.user))
+            dispatch({ type: REDIRECT, payload: '/' })
         })
         .catch(err => {
-            console.log(err.response)
+            console.log(err)
             dispatch({
                 type: ERROR_LOGGING,
                 payload: err.response ? err.response.data.errors || err.response.data.message : JSON.stringify(err)
@@ -40,12 +41,14 @@ export const login = (email, password) => dispatch => {
 
 export const handleRedirect = (user) => dispatch => {
     console.log(user);
-    if (!user.agency) {
-        dispatch({ type: REDIRECT, payload: '/auth/create-agency' })
-    } else {
-        window.location.href = 'http://localhost:3001/login'
+    // if (!user.agency) {
+    //     dispatch({ type: REDIRECT, payload: '/auth/create-agency' })
+    // } else {
+    //     window.location.href = 'http://localhost:3001/login'
 
-    }
+    // }
+    dispatch({ type: REDIRECT, payload: store.getState().general.auth_link })
+
 }
 
 export const logout = () => dispatch => {

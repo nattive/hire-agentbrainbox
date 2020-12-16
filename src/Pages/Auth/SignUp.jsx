@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Button, Message } from "semantic-ui-react";
-import authImg from "../../Assets/img/banner/auth-section.jpg";
+import authImg from "../../Assets/img/banner/auth-section.svg";
 import { registerUser } from "../../Actions/registerAction";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -95,14 +95,10 @@ const SignUp = (props) => {
     <>
       <div className="container">
         <div className="row m-4">
-          <div
-            className="col-lg-6 col-md-6 col sm-12 col-xs-12"
-            style={{
-              backgroundImage: `url(${authImg})`,
-              backgroundSize: "cover",
-              height: "500px",
-            }}
-          ></div>
+        <div className="col-lg-6 d-none d-md-block">
+          <img src={authImg} className='w-100 p-4' />
+
+        </div>
           <div className="col-lg-6 col-md-6 col sm-12 col-xs-12 mb-4">
             <div className="card" style={{ height: "490px", overflow: "auto" }}>
               <div className="card-header bg-transparent">

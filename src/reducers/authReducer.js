@@ -53,6 +53,7 @@ export default function(state = initialState, action) {
                 authenticating: false,
                 user: action.payload,
                 isRegistering: false,
+                loginError: null,
                 registrationError: null,
             };
         case REGISTRATION_ERROR:
@@ -73,6 +74,7 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 creatingAgency: false,
+                loginError: null,
                 agency: action.payload,
 
             };

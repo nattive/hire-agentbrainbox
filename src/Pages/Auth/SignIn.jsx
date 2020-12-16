@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import authImg from "../../Assets/img/service/1.png";
+import authImg from "../../Assets/img/service/1.svg";
 import { login } from "../../Actions/loginAction";
 import { useState } from "react";
 import { Message } from "rsuite";
@@ -22,7 +22,7 @@ const SignIn = (props) => {
         <div className="row auth-section">
           <div className="col-lg-7 col-md-7 col sm-12 col-xs-12">
             <div className="border">
-              <img src={authImg} alt="" className="w-100 img-responsive" />
+              <img src={authImg} alt="" className="w-100 m-4 p-4 img-responsive" />
             </div>
           </div>
           <div className="col-lg-5 col-md-5 col sm-12 col-xs-12">

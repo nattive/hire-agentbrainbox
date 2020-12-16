@@ -5,11 +5,13 @@ import {
     CREATE_AGENCY,
     AGENCY,
     ERROR_CREATING_AGENCY,
+    REDIRECT,
 
 } from "./types";
 import API from "../Constants/API";
 import { token } from "../Constants/constant";
 import { handleRedirect } from './loginAction'
+import store from "../Constants/store";
 export const registerUser = (credentials) => dispatch => {
     dispatch({ type: REGISTER_USER })
     const {
@@ -42,7 +44,8 @@ export const registerUser = (credentials) => dispatch => {
                 type: USER,
                 payload: response.data.data.user
             })
-            dispatch(handleRedirect(response.data.data.user))
+            dispatch({ type: REDIRECT, payload: store.getState().general.auth_link })
+
 
         })
         .catch(err => {

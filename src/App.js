@@ -17,14 +17,17 @@ import "./Assets/css/slick.css";
 import "./Assets/css/nice-select.css";
 import "./Assets/css/style.css";
 import "./Assets/css/custom.css";
-import 'semantic-ui-css/semantic.min.css'
-import 'rsuite/dist/styles/rsuite-default.css'
+import "semantic-ui-css/semantic.min.css";
+import "rsuite/dist/styles/rsuite-default.css";
 import Footer from "./Partials/Footer";
 function App() {
   return (
     <Provider store={store}>
       <Router>
-        <AppRoute />
+        <div style={{ minHeight: window.innerHeight }}>
+          <AppRoute />
+        </div>
+        <div className="clear"></div>
         <Footer />
       </Router>
     </Provider>

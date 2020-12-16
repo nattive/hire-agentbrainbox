@@ -8,15 +8,14 @@ export default function StepsSection() {
   return (
     <div>
       <div
-        class="apply-process-area apply-bg pt-150 pb-150"
+        class="apply-process-area apply-bg pt-50 pb-50 mb-50 bg-light"
         data-background="assets/img/gallery/how-applybg.png"
       >
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              <div class="section-tittle white-text text-center">
-                <span>Apply process</span>
-                <h2> How it works</h2>
+              <div class="section-tittle white-text text-center p-2">
+                <span>Apply Process</span>
               </div>
             </div>
           </div>
@@ -62,10 +61,11 @@ export default function StepsSection() {
                   <span class="flaticon-tour"></span>
                 </div>
                 <div class="process-cap">
-                  <h5>3. Get your job</h5>
+                  <h5>3. Send An AAR</h5>
                   <p>
-                    Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod
-                    tempor incididunt ut laborea.
+                    Send an agent availablity enquiry with just a click, This
+                    will inform the HR agency of your interest about the agent.
+                    {/* The agency will respond with all neccesary steps aon how to safely emply the agent */}
                   </p>
                 </div>
               </div>

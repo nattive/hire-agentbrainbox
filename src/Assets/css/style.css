@@ -1,11 +1,24 @@
 /***
 primary: rgb(54, 133, 54)
+secondart: #e35f19
 
 ***/
 
 @import url("https://fonts.googleapis.com/css?family=Barlow:300,400,500,600,700,900|Muli:300,400,500,600,700,800,900&display=swap");
 .white-bg {
     background: #ffffff
+}
+
+@font-face {
+    font-family: PermanentMarker;
+    src: url(../fonts/PermanentMarker-Regular.ttf);
+}
+
+.caption p {
+    font-size: 3.8em;
+    font-family: PermanentMarker;
+    padding: 0.8em;
+    width: 75%;
 }
 
 .gray-bg {
@@ -136,6 +149,7 @@ body {
     font-weight: normal;
     font-style: normal;
     overflow-x: hidden !important;
+    background-color: rgba(230, 238, 230, 0.445) !important;
 }
 
 h1,
@@ -541,8 +555,8 @@ hr {
 }
 
 .border-btn2 {
-    border: 1px solid #8b92dd;
-    color: #8b92dd;
+    border: 1px solid #e35f19;
+    color: #e35f19;
     font: "Muli", sans-serif;
     background: none;
     -moz-user-select: none;
@@ -577,7 +591,7 @@ hr {
     top: 0;
     width: 101%;
     height: 101%;
-    background: #8b92dd;
+    background: #e35f19;
     z-index: -1;
     transition: transform 0.5s;
     transition-timing-function: ease;
@@ -3427,6 +3441,10 @@ hr {
     font-size: 14px
 }
 
+#navigation a {
+    text-decoration: none;
+}
+
 .single-post-area .navigation-top .like-info i,
 .single-post-area .navigation-top .like-info span {
     font-size: 16px;
@@ -5533,15 +5551,19 @@ del {
     margin-bottom: 10px
 }
 
+.header-area {
+    background: #fff !important;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .header-area {
-        padding: 8px 0px
+        padding: 4px 0px;
     }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
     .header-area {
-        padding: 8px 0px
+        padding: 4px 0px
     }
 }
 
@@ -5711,10 +5733,12 @@ del {
 }
 
 .slider-height {
-    min-height: 300px;
+    min-height: 200px;
+    height: 200px;
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover
+    background-size: cover;
+    width: 100%
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
@@ -5773,7 +5797,7 @@ del {
 }
 
 .slider-area .hero__caption h1 {
-    font-size: 80px;
+    font-size: 50px;
     font-weight: 900;
     color: #fff;
     line-height: 75px
@@ -5781,13 +5805,13 @@ del {
 
 @media (max-width: 767px) {
     .slider-area .hero__caption h1 {
-        font-size: 27px
+        font-size: 15px
     }
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
     .slider-area .hero__caption h1 {
-        font-size: 41px
+        font-size: 20px
     }
 }
 
@@ -5799,7 +5823,7 @@ del {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .slider-area .hero__caption h1 {
-        font-size: 50px
+        font-size: 20px
     }
 }
 
@@ -5934,7 +5958,7 @@ form.search-box .input-form::before {
 }
 
 form.search-box .select-form {
-    width: 34% !important;
+    width: 79% !important;
 }
 
 @media (max-width: 767px) {
@@ -6373,8 +6397,8 @@ form.search-box .search-form a {
 }
 
 .apply-process-area .single-process {
-    padding: 44px 28px;
-    height: 250px;
+    padding: 14px 28px;
+    height: 300px;
     background-color: #e35f19 !important;
 }
 
@@ -6626,7 +6650,7 @@ form.search-box .search-form a {
 }
 
 .single-job-items .job-tittle a h4:hover {
-    color: #8b92dd
+    color: #e35f19
 }
 
 .single-job-items .job-tittle ul li {
@@ -6696,13 +6720,13 @@ form.search-box .search-form a {
 }
 
 .items-link a {
-    color: #8b92dd;
+    color: #e35f19;
     display: block;
-    border: 1px solid #8b92dd;
+    border: 1px solid #e35f19;
     border-radius: 30px;
     padding: 4px 33px;
     text-align: center;
-    margin-bottom: 25px
+    margin-bottom: 25px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -6713,12 +6737,13 @@ form.search-box .search-form a {
 
 .items-link a:hover {
     color: #fff;
-    background: #8b92dd;
-    border: 1px solid transparent
+    background: #e35f19;
+    border: 1px solid transparent;
+    text-decoration: none;
 }
 
 .items-link span {
-    color: #454d72;
+    color: #e35f19;
     display: block
 }
 

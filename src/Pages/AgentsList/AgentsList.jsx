@@ -1,50 +1,67 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import AgentCard from "../../Components/AgentCard";
+import { getAgents, getAgentsByState } from "../../Actions/agentAction";
+import bg from "../../Assets/img/hero/about.jpg";
+import Skeleton from "react-loading-skeleton";
+import { IoIosOptions, IoIosArrowBack, IoMdRefresh } from "react-icons/io";
 
-const AgentsList = () => {
+const AgentsList = (props) => {
+  const [openFilter, setOpenFilter] = useState(true);
+  const handFilterToggle = () => setOpenFilter(!openFilter);
+  useEffect(() => {
+    props.getAgents();
+  }, []);
   return (
     <>
       <div className="slider-area ">
         <div
           className="single-slider section-overly slider-height2 d-flex align-items-center"
-          data-background="assets/img/hero/about.jpg"
+          style={{ backgroundImage: `url(${bg})` }}
         >
           <div className="container">
             <div className="row">
               <div className="col-xl-12">
                 <div className="hero-cap text-center">
-                  <h2>Get your job</h2>
+                  <h2>Get your Agent</h2>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="job-listing-area pt-120 pb-120">
-        <div className="container">
+      <div className="job-listing-area  pb-120">
+        <div className="container-fluid mx-3">
           <div className="row">
-            <div className="col-xl-3 col-lg-3 col-md-3">
-              <div className="row">
+            <div
+              className={`col-xl-2 col-lg-2 col-md-2 mr-2 ${
+                openFilter && "collapsed"
+              }`}
+              style={{ backgroundColor: "white" }}
+            >
+              <div className="row featured-job-area">
                 <div className="col-12">
-                  <div className="small-section-tittle2 mb-45">
-                    <div className="ion"></div>
-                    <h4>Filter Jobs</h4>
+                  <div className="small-section-tittle2 mb-45 d-flex justify-content-between">
+                    <h4>Filter Agents</h4>
                   </div>
                 </div>
               </div>
               <div className="job-category-listing mb-50">
                 <div className="single-listing">
                   <div className="small-section-tittle2">
-                    <h4>Location</h4>
+                    <h4>Agent's Location</h4>
                   </div>
                   <div className="select-job-items2">
-                    <select name="select" className="nice-select">
-                      <option value="">State</option>
-                      <option value="">Category 1</option>
-                      <option value="">Category 2</option>
-                      <option value="">Category 3</option>
-                      <option value="">Category 4</option>
+                    <select
+                      name="select"
+                      className=" form-control"
+                      onChange={(e) => props.getAgentsByState(e.target.value)}
+                    >
+                      {props.states.map((state, key) => (
+                        <option key={key} value={state}>
+                          {state}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div className="select-Categories pt-80 pb-50">
@@ -57,7 +74,7 @@ const AgentsList = () => {
                       <span className="checkmark"></span>
                     </label>
                     <label className="container">
-                     5 - 10 years
+                      5 - 10 years
                       <input type="checkbox" checked="checked active" />
                       <span className="checkmark"></span>
                     </label>
@@ -70,15 +87,15 @@ const AgentsList = () => {
                 </div>
                 <div className="single-listing">
                   <div className="small-section-tittle2">
-                    <h4>Job Location</h4>
+                    <h4>Agency's Location</h4>
                   </div>
                   <div className="select-job-items2">
-                    <select name="select">
-                      <option value="">Anywhere</option>
-                      <option value="">Category 1</option>
-                      <option value="">Category 2</option>
-                      <option value="">Category 3</option>
-                      <option value="">Category 4</option>
+                    <select name="select" className=" form-control">
+                      {props.states.map((state, key) => (
+                        <option key={key} value="Lagos">
+                          {state}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div className="select-Categories pt-80 pb-50">
@@ -147,7 +164,7 @@ const AgentsList = () => {
                 <div className="single-listing">
                   {/* <aside className="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
                     <div className="small-section-tittle2">
-                      <h4>Filter Jobs</h4>
+                      <h4>Filter Agents</h4>
                     </div>
                     <div className="widgets_inner">
                       <div className="range_item">
@@ -182,14 +199,61 @@ const AgentsList = () => {
                 </div>
               </div>
             </div>
-            <div className="col-xl-9 col-lg-9 col-md-10">
-              <section className="featured-job-area">
+            <div
+              className={`${
+                openFilter
+                  ? "col-xl-12 col-lg-12 col-md-12"
+                  : "col-xl-9 col-lg-9 col-md-10 w-100"
+              }`}
+              style={{ backgroundColor: "white" }}
+            >
+              <section
+                className="featured-job-area"
+                style={{ height: window.innerHeight }}
+              >
                 <div className="container">
-                  <div className="row">
+                  <div className="row  mb-4">
                     <div className="col-lg-12">
-                      <div className="count-job mb-35">
-                        <span>39, 782 Jobs found</span>
-                        <div className="select-job-items">
+                      <div className="count-job mb-35 mb-4">
+                        <div>
+                          <h4 className="mr-2">
+                            {!openFilter ? (
+                              <a
+                                href="#"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  props.getAgents();
+                                }}
+                                title="Open filter"
+                              >
+                                <IoIosArrowBack onClick={handFilterToggle} />
+                              </a>
+                            ) : (
+                              <a
+                                href="#"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  handFilterToggle();
+                                }}
+                                title="Open filter"
+                              >
+                                <IoIosOptions />
+                              </a>
+                            )}
+                            <a
+                              href="#"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                props.getAgents();
+                              }}
+                              title="Refresh"
+                            >
+                              <IoMdRefresh />
+                            </a>
+                          </h4>
+                        </div>
+                        <span>{props.agents.length} Agent(s) found</span>
+                        {/* <div className="select-job-items">
                           <span>Sort by</span>
                           <select name="select">
                             <option value="">None</option>
@@ -197,26 +261,29 @@ const AgentsList = () => {
                             <option value="">job list</option>
                             <option value="">job list</option>
                           </select>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col-xs-3">
-                      <AgentCard />
-                    </div>
-                    <div className="col-xs-3">
-                      <AgentCard />
-                    </div>
-                    <div className="col-xs-3">
-                      <AgentCard />
-                    </div>
-                    <div className="col-xs-3">
-                      <AgentCard />
-                    </div>
-                    
-                 </div>
-                 </div>
+                  <div className="row mt-5">
+                    {props.gettingAgents ? (
+                      [...Array(10)].map((x, i) => (
+                        <div className="col-xs-3 m-3" key={i}>
+                          <Skeleton width={200} height={200} />
+                          <Skeleton count={3} />
+                        </div>
+                      ))
+                    ) : props.agents.length > 0 ? (
+                      props.agents.map((agent) => (
+                        <div className="col-xs-3" key={agent.id}>
+                          <AgentCard {...agent} />
+                        </div>
+                      ))
+                    ) : (
+                      <p>No Agents yet </p>
+                    )}
+                  </div>
+                </div>
               </section>
             </div>
           </div>
@@ -260,8 +327,12 @@ const AgentsList = () => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  agents: state.agent.agents,
+  gettingAgents: state.agent.gettingAgents,
+  states: state.general.states,
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { getAgents, getAgentsByState };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AgentsList);

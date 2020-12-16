@@ -1,8 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
-const HeaderSection = () => {
+import { GoCommentDiscussion, GoBell } from "react-icons/go";
+import { Badge } from "rsuite";
+import {me} from "../Actions/loginAction"
+import logo from '../Assets/img/logo/logo.png'
+import { GrUserManager } from "react-icons/gr";
+const HeaderSection = (props) => {
+  // useEffect(() => {
+  //  props.me()
+  // }, [])
   return (
     <div>
       <div className="header-area header-transparent">
@@ -12,7 +19,7 @@ const HeaderSection = () => {
               <div className="col-lg-3 col-md-2">
                 <div className="logo">
                   <a href="index.html">
-                    <img src="assets/img/logo/logo.png" alt="" />
+                    <img src={logo} alt="logo" />
                   </a>
                 </div>
               </div>
@@ -68,12 +75,46 @@ const HeaderSection = () => {
                     </nav>
                   </div>
                   <div className="header-btn d-none f-right d-lg-block">
-                    <Link to="/auth/register" className="btn head-btn2">
-                      Register
-                    </Link>
-                    <Link to="/auth/login" className="btn head-btn2">
-                      Login
-                    </Link>
+                    {props.user.id ? (
+                      <div className="main-menu">
+                        <ul id="navigation">
+                          <li>
+                            <Link to="/message">
+                              <h5>
+                                {/* <Badge content={0} /> */}
+                                <div className="head-menu">
+                                  <GrUserManager />
+                                  <small className="head-menu text-dark">
+                                    Your Account
+                                  </small>
+                                </div>
+                              </h5>
+                            </Link>
+                          </li>
+                          <li>
+                            <Link to="/auth/register">
+                              <h5>
+                                <div className="head-menu">
+                                  <Badge content={0} /> <GoBell />
+                                  <small className="head-menu text-dark">
+                                    Notification
+                                  </small>
+                                </div>
+                              </h5>
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                    ) : (
+                      <>
+                        <Link to="/auth" className="btn head-btn2">
+                          Register
+                        </Link>
+                        <Link to="/auth/login" className="btn head-btn2">
+                          Login
+                        </Link>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -88,8 +129,10 @@ const HeaderSection = () => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+});
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { me };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderSection);
