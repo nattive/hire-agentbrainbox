@@ -3,18 +3,67 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { GoCommentDiscussion, GoBell } from "react-icons/go";
 import { Badge } from "rsuite";
-import {me} from "../Actions/loginAction"
-import logo from '../Assets/img/logo/logo.png'
+import { me } from "../Actions/loginAction";
+import logo from "../Assets/img/logo/logo.png";
 import { GrUserManager } from "react-icons/gr";
+import { IoMenuOutline, IoClose } from "react-icons/io5";
+import "./style.css";
 const HeaderSection = (props) => {
-  // useEffect(() => {
-  //  props.me()
-  // }, [])
+  const [collapse, setCollapse] = React.useState(true);
+  useEffect(() => {
+    props.me();
+  }, []);
   return (
     <div>
-      <div className="header-area header-transparent">
+      <div className="header-area header-transparent navbar-header">
         <div className="header-top header-sticky">
           <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="container">
+                  <div className="mobile_menu d-block d-lg-none ">
+                    <div className="float-right">
+                      <a href="#" onClick={() => setCollapse(!collapse)}>
+                        {collapse ? <IoMenuOutline /> : <IoClose />}
+                      </a>{" "}
+                    </div>
+                    <div
+                      className={`bg-light p-3 ${
+                        collapse ? "collapsed" : null
+                      }`}
+                    >
+                      <ul className="bg-block">
+                        <li>
+                          <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                          <Link to="/agents"> Agent near you </Link>
+                        </li>
+                        <li>
+                          <Link to="/agency"> Agencies </Link>
+                        </li>
+                        {props.user.id ? (
+                          <>
+                            <li>
+                              <Link to="/account">My Account</Link>
+                            </li>
+                          </>
+                        ) : (
+                          <>
+                            <li>
+                              <Link to="/auth">Register</Link>
+                            </li>
+                            <li>
+                              <Link to="/auth/login">Login</Link>
+                            </li>
+                          </>
+                        )}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="row align-items-center">
               <div className="col-lg-3 col-md-2">
                 <div className="logo">
@@ -35,6 +84,10 @@ const HeaderSection = (props) => {
                           <Link to="/agents"> Agent near you </Link>
                         </li>
                         <li>
+                          <Link to="/agency"> Agencies </Link>
+                        </li>
+
+                        {/* <li>
                           <a href="about.html">HRs</a>
                           <ul className="submenu">
                             <li>
@@ -46,11 +99,11 @@ const HeaderSection = (props) => {
                               </a>
                             </li>
                           </ul>
-                        </li>
+                        </li> */}
                         <li>
                           <a href="about.html">Blacklists</a>
                         </li>
-
+                        {/* 
                         <li>
                           <a href="#">About</a>
                           <ul className="submenu">
@@ -71,6 +124,7 @@ const HeaderSection = (props) => {
                         <li>
                           <a href="contact.html">Contact</a>
                         </li>
+                     */}
                       </ul>
                     </nav>
                   </div>
@@ -79,7 +133,7 @@ const HeaderSection = (props) => {
                       <div className="main-menu">
                         <ul id="navigation">
                           <li>
-                            <Link to="/message">
+                            <Link to="/account">
                               <h5>
                                 {/* <Badge content={0} /> */}
                                 <div className="head-menu">
@@ -117,9 +171,6 @@ const HeaderSection = (props) => {
                     )}
                   </div>
                 </div>
-              </div>
-              <div className="col-12">
-                <div className="mobile_menu d-block d-lg-none"></div>
               </div>
             </div>
           </div>

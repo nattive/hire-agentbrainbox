@@ -26,8 +26,8 @@ const columns = [
 ];
 const conditionalRowStyles = [
   {
-    when: (row) => row.isRead === false || 0,
-    style: { fontWeight: "bold" },
+    when: (row) => row.isRead === 0,
+    style: { backgroundColor: 'red' },
   },
 ];
 const AllMessage = (props) => {
@@ -41,14 +41,16 @@ const AllMessage = (props) => {
   useEffect(() => {
     let messages = [];
     props.messages.forEach((message) => {
+      console.log(message)
+      
       messages.push({
-        id: message.id,
-        sender_id: message.user.id,
-        sender_data: message.user,
-        message: message.message,
-        subject: message.subject,
-        date: message.date,
-        isRead: message.isRead === 0 ? false : true,
+        id: message.messages[0].id,
+        sender_id: message.messages[0].user.id,
+        sender_data: message.messages[0].user,
+        message: message.messages[0].message,
+        subject: message.messages[0].subject,
+        date: message.messages[0].date,
+        isRead: message.messages[0].isRead === 0 ? false : true,
       });
     });
     setMessagesArray(messages);

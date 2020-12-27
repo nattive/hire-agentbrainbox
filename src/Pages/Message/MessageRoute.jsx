@@ -6,6 +6,7 @@ import { AllRequests } from "./AllRequests";
 import { useRouteMatch } from "react-router-dom/cjs/react-router-dom.min";
 import AllMessage from "./AllMessage";
 import ViewMessage from "./ViewMessage";
+import Dashboard from "../Account/Dashboard";
 
 const MessageRoute = (props) => {
   const { path } = useRouteMatch();
@@ -15,7 +16,7 @@ const MessageRoute = (props) => {
         <Route
           exact
           path={path}
-          component={(props) => <AllRequests {...props} />}
+          component={(props) => <Dashboard {...props} />}
         />
         <Route
           exact

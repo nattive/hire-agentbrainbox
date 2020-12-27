@@ -6,7 +6,7 @@ import {
 const initialState = {
     link: null,
     auth_link: null,
-    states: [
+    States: [
         'Abia',
         'Adamawa',
         'Akwa Ibom',

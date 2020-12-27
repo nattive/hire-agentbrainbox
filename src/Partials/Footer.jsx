@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -11,12 +12,9 @@ export default function Footer() {
               <div className="single-footer-caption mb-50">
                 <div className="single-footer-caption mb-30">
                   <div className="footer-tittle">
-                    <h4>About Us</h4>
+                    <h4>About AgentBrainBox</h4>
                     <div className="footer-pera">
-                      <p>
-                        Heaven frucvitful doesn't cover lesser dvsays appear
-                        creeping seasons so behold.
-                      </p>
+                      <p>We are Nigerian's Number one betting community</p>
                     </div>
                   </div>
                 </div>
@@ -28,13 +26,13 @@ export default function Footer() {
                   <h4>Contact Info</h4>
                   <ul>
                     <li>
-                      <p>Address :Your address goes here, your demo address.</p>
+                      <p>Hwad Office : Lagos, Nigeria.</p>
                     </li>
                     <li>
                       <a href="#">Phone : +8880 44338899</a>
                     </li>
                     <li>
-                      <a href="#">Email : info@colorlib.com</a>
+                      <a href="#">Email : info@agentbrainbox.com</a>
                     </li>
                   </ul>
                 </div>
@@ -46,19 +44,19 @@ export default function Footer() {
                   <h4>Important Link</h4>
                   <ul>
                     <li>
-                      <a href="#"> View Project</a>
+                      <Link to="/">Home</Link>
                     </li>
                     <li>
-                      <a href="#">Contact Us</a>
+                      <Link to="/agents"> Agent near you </Link>
                     </li>
                     <li>
-                      <a href="#">Testimonial</a>
+                      <Link to="/agency"> Agencies </Link>
                     </li>
                     <li>
-                      <a href="#">Proparties</a>
+                      <Link to="/agency"> Blacklisted </Link>
                     </li>
                     <li>
-                      <a href="#">Support</a>
+                      <Link to="/agency"> FAQ </Link>
                     </li>
                   </ul>
                 </div>
@@ -70,8 +68,7 @@ export default function Footer() {
                   <h4>Newsletter</h4>
                   <div className="footer-pera footer-pera2">
                     <p>
-                      Heaven fruitful doesn't over lesser in days. Appear
-                      creeping.
+                     Stay Updated 
                     </p>
                   </div>
                   <div className="footer-form">
@@ -96,9 +93,9 @@ export default function Footer() {
                             type="submit"
                             name="submit"
                             id="newsletter-submit"
-                            className="email_icon newsletter-submit button-contactForm"
+                            className="text-light email_icon newsletter-submit button-contactForm"
                           >
-                            <img src="assets/img/icon/form.png" alt="" />
+                            Subscribe
                           </button>
                         </div>
                         <div className="mt-10 info"></div>
@@ -120,21 +117,21 @@ export default function Footer() {
             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-5">
               <div className="footer-tittle-bottom">
                 <span>5000+</span>
-                <p>Talented Hunter</p>
+                <p>Agents</p>
               </div>
             </div>
             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-5">
               <div className="footer-tittle-bottom">
                 <span>451</span>
-                <p>Talented Hunter</p>
+                <p>Registered Agencies</p>
               </div>
             </div>
-            <div className="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+            {/* <div className="col-xl-3 col-lg-3 col-md-4 col-sm-5">
               <div className="footer-tittle-bottom">
                 <span>568</span>
                 <p>Talented Hunter</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -149,11 +146,7 @@ export default function Footer() {
                     <script>
                       document.write(new Date().getFullYear());
                     </script>{" "}
-                    All rights reserved | This template is made with{" "}
-                    <i className="fa fa-heart" aria-hidden="true"></i> by{" "}
-                    <a href="https://colorlib.com" target="_blank">
-                      Colorlib
-                    </a>
+                    All rights reserved | AgentBrainBox
                   </p>
                 </div>
               </div>

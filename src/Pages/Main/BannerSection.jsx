@@ -23,8 +23,12 @@ const BannerSection = (props) => {
         <div className="slider-area ">
           <div className="slider-active">
             <div
-              className="single-slider slider-height d-flex align-items-center w-100"
-              style={{ backgroundImage: `url(${img_2})` }}
+              className="single-slider img-fluid slider-height d-flex align-items-center w-100"
+              style={{
+                backgroundImage: `url(${img_2})`,
+                maxWidth: "100%",
+                height: "auto",
+              }}
             >
               <div className="container">
                 <div className="row">
@@ -60,7 +64,7 @@ const BannerSection = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  states: state.general.states,
+  states: state.general.States,
 });
 
 const mapDispatchToProps = {};

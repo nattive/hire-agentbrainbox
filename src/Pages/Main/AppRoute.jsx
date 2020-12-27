@@ -29,6 +29,9 @@ import { baseUrlNoApi } from "../../Constants/API";
 import Pusher from "pusher-js";
 import { sendMessage, getChats } from "../../Actions/chatAction";
 import Message from "../Message";
+import Agency from "../Agency";
+import ViewAgency from "../Agency/ViewAgency";
+import Dashboard from "../Account/Dashboard";
 
 const AppRoute = (props) => {
   const history = useHistory();
@@ -43,20 +46,20 @@ const AppRoute = (props) => {
      *
      * Echo server
      */
-    window.Echo = new Echo({
-      broadcaster: "pusher",
-      key: "444a813005c3d837d511",
-      encrypted: true,
-      cluster: "eu",
-      authEndpoint: `${baseUrlNoApi}/broadcasting/auth`,
-      auth: {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem(token),
-        },
-      },
-    });
-    props.getChats();
-  }, []);
+  //   window.Echo = new Echo({
+  //     broadcaster: "pusher",
+  //     key: "444a813005c3d837d511",
+  //     encrypted: true,
+  //     cluster: "eu",
+  //     authEndpoint: `${baseUrlNoApi}/broadcasting/auth`,
+  //     auth: {
+  //       headers: {
+  //         Authorization: "Bearer " + localStorage.getItem(token),
+  //       },
+  //     },
+  //   });
+  //   props.getChats();
+  // }, []);
   // useEffect(() => {
   //   console.log('user');
   //   window.Echo.join(`chat.user.${props.user.id}`)
@@ -68,20 +71,20 @@ const AppRoute = (props) => {
   //       console.log(event);
   //     });
   // }, [props.user]);
-  useEffect(() => {
-    {
-      props.channels &&
-        props.channels.forEach((channel) => {
-          window.Echo.join(`chat.channel.${channel}`)
-            .here((user) => {
-              console.log(user);
-            })
-            .listen("CHatMessageSent", (event) => {
-              console.log(event);
-            });
-        });
-    }
-  }, [props.channels]);
+  // useEffect(() => {
+  //   {
+  //     props.channels &&
+  //       props.channels.forEach((channel) => {
+  //         window.Echo.join(`chat.channel.${channel}`)
+  //           .here((user) => {
+  //             console.log(user);
+  //           })
+  //           .listen("CHatMessageSent", (event) => {
+  //             console.log(event);
+  //           });
+  //       });
+  //   }
+  }, []);
   useEffect(() => {
     /**
      *
@@ -89,23 +92,28 @@ const AppRoute = (props) => {
      */
     props.reciever.id && toggleWidget(true);
   }, [props.reciever]);
-  const handleNewMessage = (newMessage) => {
-    addResponseMessage("Welcome to agent bain box");
-  };
+ 
 
   return (
     <Switch>
       <div>
         <HeaderSection />
-        <Route exact path="/" component={(props) => <Home {...props} />} />
         <Route path="/auth" component={(props) => <Auth {...props} />} />
-        <Route
-          path="/message"
-          component={(props) => <Message {...props} />}
-        />
+        <Route path="/account" component={(props) => <Message {...props} />} />
         <Route
           path="/agents"
           component={(props) => <AgentsList {...props} />}
+        />
+        <Route exact path="/" component={(props) => <Home {...props} />} />
+        <Route
+          exact
+          path="/agency"
+          component={(props) => <Agency {...props} />}
+        />
+        <Route
+          exact
+          path={`/agency/id/:id`}
+          component={(props) => <ViewAgency {...props} />}
         />
       </div>
     </Switch>

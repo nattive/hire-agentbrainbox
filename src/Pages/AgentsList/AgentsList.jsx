@@ -34,7 +34,7 @@ const AgentsList = (props) => {
         <div className="container-fluid mx-3">
           <div className="row">
             <div
-              className={`col-xl-2 col-lg-2 col-md-2 mr-2 ${
+              className={`col-xl-3 col-lg-3 col-md-3 mr-2 ${
                 openFilter && "collapsed"
               }`}
               style={{ backgroundColor: "white" }}
@@ -98,7 +98,7 @@ const AgentsList = (props) => {
                       ))}
                     </select>
                   </div>
-                  <div className="select-Categories pt-80 pb-50">
+                  {/* <div className="select-Categories pt-80 pb-50">
                     <div className="small-section-tittle2">
                       <h4>Experience</h4>
                     </div>
@@ -122,7 +122,7 @@ const AgentsList = (props) => {
                       <input type="checkbox" />
                       <span className="checkmark"></span>
                     </label>
-                  </div>
+                  </div> */}
                 </div>
                 {/* <div className="single-listing">
                   <div className="select-Categories pb-50">
@@ -267,7 +267,7 @@ const AgentsList = (props) => {
                   </div>
                   <div className="row mt-5">
                     {props.gettingAgents ? (
-                      [...Array(10)].map((x, i) => (
+                      [...Array(3)].map((x, i) => (
                         <div className="col-xs-3 m-3" key={i}>
                           <Skeleton width={200} height={200} />
                           <Skeleton count={3} />
@@ -330,7 +330,7 @@ const AgentsList = (props) => {
 const mapStateToProps = (state) => ({
   agents: state.agent.agents,
   gettingAgents: state.agent.gettingAgents,
-  states: state.general.states,
+  states: state.general.States,
 });
 
 const mapDispatchToProps = { getAgents, getAgentsByState };

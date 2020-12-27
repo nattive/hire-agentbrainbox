@@ -52,6 +52,18 @@ export const GET_AGENT = "GET_AGENT"
 export const AGENT = "AGENT"
 export const GET_AGENT_ERR = "GET_AGENT_ERR"
 
+export const GET_AGENCIES = "GET_AGENCIES"
+export const AGENCIES = "AGENCIES"
+export const GET_AGENCIES_ERR = "GET_AGENCIES_ERR"
+
+export const GET_AGENCY = "GET_AGENCY"
+export const THE_AGENCY = "THE_AGENCY"
+export const GET_AGENCY_ERR = "GET_AGENCY_ERR"
+
+export const GET_BANNED_AGENT = "GET_BANNED_AGENT"
+export const BANNED_AGENT = "BANNED_AGENT"
+export const GET_BANNED_AGENT_ERR = "GET_BANNED_AGENT_ERR"
+
 export const SEND_EMPLOYMT_ENQ = "SEND_EMPLOYMT_ENQ"
 export const EMPLOYMT_ENQ_SENT = "EMPLOYMT_ENQ_SENT"
 export const EMPLOYMT_ENQ_ERR = "EMPLOYMT_ENQ_ERR"

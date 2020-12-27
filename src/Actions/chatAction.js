@@ -118,7 +118,7 @@ export const showMessage = (id) => dispatch => {
 
             dispatch({
                 type: MESSAGE_ERROR,
-                payload: err.response ? err.response.data.errors || err.response.data.message : JSON.stringify(err)
+                payload: err.response.data || err.response.data.message || JSON.stringify(err)
             })
         })
 }
@@ -128,6 +128,7 @@ export const replyMessage = (data) => dispatch => {
         receiver_Id,
         message,
         subject,
+        message_name,
         message_id
     } = data
     dispatch({ type: SEND_REPLY })
@@ -136,7 +137,8 @@ export const replyMessage = (data) => dispatch => {
             receiver_Id,
             message,
             subject,
-            message_id
+            message_name,
+            re_message_id: message_id
         }, { headers: { Authorization: `Bearer ${userToken}` } })
         .then(response => {
             console.log(response.data)

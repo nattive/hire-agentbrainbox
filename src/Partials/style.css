@@ -1,0 +1,17 @@
+    .mobile_menu>.float-right>a {
+        font-size: 1.8em;
+        color: rgb(61, 60, 60);
+    }
+    
+    .mobile_menu {
+        margin: 0 10px;
+    }
+    
+    .mobile_menu ul>li>a {
+        color: rgb(61, 60, 60);
+    }
+    
+    .mobile_menu ul>li {
+        margin-bottom: 1em;
+        border-bottom: rgb(61, 60, 60);
+    }

@@ -61,7 +61,7 @@ export const logout = () => dispatch => {
             console.log(err.response)
             dispatch({
                 type: ERROR_LOGGING,
-                payload: err.response ? err.response.data.errors || err.response.data.message : JSON.stringify(err)
+                payload: err.response ? err.response.data.errors || err.response.data.message : err.message
             })
         })
 }

@@ -2,22 +2,32 @@ import React, { Component, useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import img from "../../Assets/img/testmonial/testimonial-founder.png";
 import headerImage from "../../Assets/img/hero/about.jpg";
-import { useParams, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useParams,
+  useHistory,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { getAgent } from "../../Actions/agentAction";
 import { Link } from "react-router-dom";
 import { sendAgentEnq } from "../../Actions/agentAction";
+import { Button } from "rsuite";
 const ViewAgent = (props) => {
   const [history, setHistory] = useState([]);
   const [error, setError] = useState();
-  const historyNav = useHistory()
+  const historyNav = useHistory();
   const [education, setEducation] = useState([]);
+  const [showFeild, setShowFeild] = useState(false);
+  const [extraMessage, setExtraMessage] = useState();
   const [employmetHistory, setEmploymetHistory] = useState([]);
   const dispatch = useDispatch();
+  const handleShoeFeild = (e) => {
+    e.preventDefault();
+    setShowFeild(true);
+  };
   const handleSendEnq = (e) => {
     e.preventDefault();
     if (props.user.id) {
       setError(null);
-      props.sendAgentEnq(props.agent.id);
+      props.sendAgentEnq(props.agent.id, extraMessage);
       // historyNav.push("/message");
     } else {
       setError("You need to login/Register to contact an agency");
@@ -166,15 +176,39 @@ const ViewAgent = (props) => {
                     </li>
                   </ul>
                   <div className="apply-btn2">
-                    <a
-                      href="#"
-                      onClick={handleSendEnq}
-                      className="btn"
-                    >
-                     Send an enquiry
+                    <a href="#" onClick={handleShoeFeild} className="btn">
+                      Send an enquiry Message
                     </a>
-                    {error && <p className="my-4 alert alert-danger">{error}</p>}
+                    {error && (
+                      <p className="my-4 alert alert-danger">{error}</p>
+                    )}
                   </div>
+                  {showFeild && (
+                    <>
+                      {props.replySent ? (
+                        <p className="alert alert-message">Message Sent</p>
+                      ) : (
+                        <textarea
+                          onChange={(e) => setExtraMessage(e.target.value)}
+                          placeholder="...enter additional message (optional)"
+                          id=""
+                          cols="30"
+                          rows="10"
+                          className="form-control mt-4"
+                        ></textarea>
+                      )}
+                      {props.replySentError && <> <p className="alert alert-danger">{props.replySentError}</p> </>}
+                      <Button
+                        href="#"
+                        onClick={handleSendEnq}
+                        color="green"
+                        loading={props.sendingReply}
+                        className="btn"
+                      >
+                        Send
+                      </Button>
+                    </>
+                  )}
                 </div>
                 <div className="post-details4  mb-50">
                   <div className="small-section-tittle">
@@ -231,7 +265,10 @@ const ViewAgent = (props) => {
 
 const mapStateToProps = (state) => ({
   agent: state.agent.agent,
-  user: state.auth.user
+  user: state.auth.user,
+  sendingReply: state.chat.sendingReply,
+  replySent: state.chat.replySent,
+  replySentError: state.chat.replySentError,
 });
 
 const mapDispatchToProps = {

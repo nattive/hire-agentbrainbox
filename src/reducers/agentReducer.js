@@ -5,13 +5,32 @@ import {
     GET_AGENT,
     AGENT,
     GET_AGENT_ERR,
+    GET_BANNED_AGENT,
+    BANNED_AGENT,
+    GET_BANNED_AGENT_ERR,
+    GET_AGENCIES,
+    AGENCIES,
+    GET_AGENCIES_ERR,
+    GET_AGENCY,
+    THE_AGENCY,
+    AGENCY,
+    GET_AGENCY_ERR,
 } from "../Actions/types";
 
 const initialState = {
     gettingAgents: false,
     agents: [],
     agent: {},
-    agentError: null
+    agentError: null,
+    agency: {},
+    gettingAgency: false,
+    agError: null,
+    bannedAgents: [],
+    gettingBannedAgent: false,
+    bannendAgentError: null,
+    gettingAgencies: false,
+    agencies: [],
+    agenciesErr: null
 }
 
 export default function(state = initialState, action) {
@@ -57,6 +76,73 @@ export default function(state = initialState, action) {
                 ...state,
                 gettingAgents: false,
                 agentError: action.payload
+            };
+        case GET_AGENCIES:
+            return {
+                ...state,
+                gettingAgencies: true,
+                agenciesErr: null
+            }
+        case AGENCIES:
+            return {
+                ...state,
+                gettingAgencies: false,
+                agencies: action.payload,
+                agenciesErr: null
+
+
+            };
+        case GET_AGENCIES_ERR:
+            return {
+                ...state,
+                gettingAgencies: false,
+                agenciesErr: action.payload
+            };
+
+
+
+        case GET_AGENCY:
+            return {
+                ...state,
+                gettingAgency: true,
+                agError: null
+            }
+        case THE_AGENCY:
+            return {
+                ...state,
+                gettingAgency: false,
+                agency: action.payload,
+                agError: null
+
+
+            };
+        case GET_AGENCY_ERR:
+            return {
+                ...state,
+                gettingAgency: false,
+                agError: action.payload
+            };
+        case GET_BANNED_AGENT:
+            return {
+                ...state,
+                gettingBannedAgent: true,
+                bannendAgentError: null
+            }
+
+        case BANNED_AGENT:
+            return {
+                ...state,
+                gettingBannedAgent: false,
+                bannedAgents: action.payload,
+                bannendAgentError: null
+
+
+            };
+        case GET_BANNED_AGENT_ERR:
+            return {
+                ...state,
+                gettingBannedAgent: false,
+                bannendAgentError: action.payload
 
 
             };
